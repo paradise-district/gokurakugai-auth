@@ -7,12 +7,10 @@ const path = require("path");
 const app = express();
 app.use(cors());
 
-// Serve frontend
-const frontendPath = __dirname;
-app.use(express.static(frontendPath));
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -78,7 +76,7 @@ app.get("/callback", async (req, res) => {
     console.log("Redirecting with:", user.id, user.username);
 
     res.redirect(
-  `http://localhost:3000/?id=${user.id}&username=${user.username}&display=${encodeURIComponent(user.global_name || user.username)}#theories`
+  `/?id=${user.id}&username=${user.username}&display=${encodeURIComponent(user.global_name || user.username)}#theories`
 );
 
   } catch (error) {
@@ -87,6 +85,8 @@ app.get("/callback", async (req, res) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
