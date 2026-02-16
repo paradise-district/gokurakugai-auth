@@ -76,7 +76,7 @@ app.get("/callback", async (req, res) => {
     console.log("Redirecting with:", user.id, user.username);
 
     res.redirect(
-  `/?id=${user.id}&username=${user.username}&display=${encodeURIComponent(user.global_name || user.username)}#theories`
+  `https://paradise-district.github.io/gokurakugai/?id=${user.id}&username=${user.username}&display=${encodeURIComponent(user.global_name || user.username)}#theories`
 );
 
   } catch (error) {
