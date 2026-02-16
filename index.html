@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gokurakugai Community · Discord Hub & Fan Site</title>
+
+    <!-- ================= BASIC SEO ================= -->
+    <meta name="description" content="Gokurakugai Community — a fan-run Discord-centered hub dedicated to the action-supernatural manga by Yuto Sano. News, countdowns, and community resources.">
+    <meta name="keywords" content="Gokurakugai, 極楽街, manga, Yuto Sano, Jump SQ, Gokurakugai community, Gokurakugai Discord, Gokurakugai server, Gokurakugai Discord Server, Gokurakugai anime, Gokurakugai manga, Gokurakugai anime manga fans">
+    <meta name="author" content="Gokurakugai Community">
+    <meta name="robots" content="index, follow">
+
+    <!-- ================= CANONICAL URL ================= -->
+    <link rel="canonical" href="https://paradise-district.github.io/gokurakugai/">
+
+    <!-- ================= FAVICON ================= -->
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/favicon-180.png">
+
+    <!-- ================= OPEN GRAPH ================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Gokurakugai Community">
+    <meta property="og:description" content="A fan-run wiki and Discord community dedicated to Gokurakugai — the action-supernatural manga by Yuto Sano.">
+    <meta property="og:url" content="https://paradise-district.github.io/gokurakugai/">
+    <meta property="og:image" content="https://paradise-district.github.io/gokurakugai/assets/images/og-image.jpg">
+    <meta property="og:site_name" content="Gokurakugai Community">
+    <meta property="og:image:alt" content="Gokurakugai Community — Discord hub and fan site for the manga by Yuto Sano">
+
+    <!-- ================= TWITTER PREVIEW ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gokurakugai Community">
+    <meta name="twitter:description" content="Fan-run Gokurakugai community and Discord hub. News, releases, countdowns, and resources.">
+    <meta name="twitter:image" content="https://paradise-district.github.io/gokurakugai/assets/images/og-image.jpg">
+    <style>
+      /* ================= FONTS ================= */
+      body {
+        font-family: "Segoe UI", system-ui, sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: Georgia, "Times New Roman", serif;
+        letter-spacing: .04em;
+      }
+
+      /* ================= THEME ================= */
+      :root {
+        --bg: #f7f3ea;
+        --panel: #ffffff;
+        --ink: #c43128;
+        --text: #000;
+        --accent: #c43128;
+        --frame: url("assets/images/light-border.png");
+        --pattern: url("assets/images/pattern-light.png");
+        --header-bg: url("assets/images/header-bg-light.jpg");
+        --ease: cubic-bezier(.4, 0, .2, 1);
+      }
+
+      body.dark {
+        --bg: #0f0f0f;
+        --panel: #141414;
+        --ink: #d6b25e;
+        --text: #fff;
+        --accent: #d6b25e;
+        --frame: url("assets/images/dark-border.png");
+        --pattern: url("assets/images/pattern-dark.png");
+        --header-bg: url("assets/images/header-bg-dark.jpg");
+      }
+
+      * {
+        box-sizing: border-box
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(rgba(255, 255, 255, .82),
+            rgba(255, 255, 255, .82)),
+          var(--pattern),
+          var(--bg);
+        /* SMALL + UNIFORM PATTERN */
+        background-size:
+          auto,
+          260px 260px,
+          auto;
+        background-repeat:
+          no-repeat,
+          repeat,
+          no-repeat;
+        color: var(--text);
+        transition: all .3s var(--ease);
+      }
+
+      body.dark {
+        background:
+          linear-gradient(rgba(0, 0, 0, .78),
+            rgba(0, 0, 0, .78)),
+          var(--pattern),
+          var(--bg);
+        /* SAME TILE SIZE — VISUALLY MATCHED */
+        background-size:
+          auto,
+          260px 260px,
+          auto;
+      }
+
+      /* ================= HEADER ================= */
+      .header {
+        position: relative;
+        height: 320px;
+        background: var(--header-bg) center/cover no-repeat;
+      }
+
+      .header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, .6);
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-align: center;
+        height: 260px;
+      }
+
+      /* ================= LOGO GLITCH HOVER ================= */
+      .logo-glitch {
+        position: relative;
+        width: 480px;
+        max-width: 90%;
+      }
+
+      .logo-glitch .logo {
+        width: 100%;
+        display: block;
+      }
+
+      /* Japanese logo hidden by default */
+      .logo-glitch .glitch {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ================= REAL GLITCH EFFECT ================= */
+      @keyframes rgb-glitch {
+        0% {
+          transform: translate(0);
+          filter:
+            drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+        }
+
+        15% {
+          transform: translate(-2px, 1px);
+        }
+
+        30% {
+          transform: translate(2px, -1px);
+        }
+
+        45% {
+          transform: translate(-1px, 2px);
+        }
+
+        60% {
+          transform: translate(1px, -2px);
+        }
+
+        75% {
+          transform: translate(-1px, 1px);
+        }
+
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      .logo-glitch::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(255, 255, 255, .08) 50%,
+            rgba(0, 0, 0, .08) 50%);
+        background-size: 100% 4px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .logo-glitch:hover::after {
+        opacity: .25;
+      }
+
+      /* Hover trigger */
+      .logo-glitch:hover .glitch {
+        opacity: 1;
+        animation: rgb-glitch 0.35s infinite;
+        filter:
+          drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+      }
+
+      .logo-glitch:hover .base {
+        opacity: 0;
+      }
+
+      /* Glitch animation */
+      .header h1 {
+        margin-top: 10px;
+        font-size: 25px;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      /* ================= COUNTDOWN ================= */
+      .count-title {
+        color: var(--accent);
+        font-size: .85rem;
+      }
+
+      .countdown {
+        position: sticky;
+        top: 0;
+        z-index: 2000;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background: #000;
+        padding: 16px;
+        text-align: center;
+      }
+
+      .count-box {
+        color: var(--accent);
+        font-size: .85rem;
+      }
+
+      .count-box span {
+        display: block;
+        color: #fff;
+        font-size: 1.15rem;
+      }
+
+      /* ================= TABS ================= */
+      .tabs-bar {
+        position: sticky;
+        top: 64px;
+        z-index: 1999;
+        display: flex;
+        align-items: center;
+        background: #000;
+      }
+
+      .tabs-viewport {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      @media (max-width: 768px) {
+        .tabs-viewport {
+          justify-content: flex-start;
+        }
+      }
+
+      .tabs {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        padding: 0 12px;
+        position: relative;
+      }
+
+      .tabs {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        padding: 0 12px;
+      }
+
+      .tab {
+        padding: 14px 18px;
+        cursor: pointer;
+        color: #ccc;
+        border-bottom: 3px solid transparent;
+      }
+
+      .tab.has-dropdown {
+        z-index: 10;
+      }
+
+      .tab {
+        flex: 0 0 auto;
+      }
+
+      .tab.active {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .tab:hover {
+        color: #fff
+      }
+
+      .tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tabs {
+        scrollbar-width: none;
+        /* Firefox */
+      }
+
+      .tab.active {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .theme-toggle {
+        margin-right: 16px;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.3rem;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 5;
+      }
+
+      /* ================= MANGA DROPDOWN ================= */
+      .tab.has-dropdown {
+        position: relative;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: #000;
+        border: 1px solid rgba(255, 255, 255, .12);
+        min-width: 160px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease;
+        z-index: 9999;
+      }
+
+      /* ================= MANGA DROPDOWN CARET ================= */
+      .dropdown-caret {
+        margin-left: 8px;
+        font-size: 1rem;
+        /* ⬆ bigger */
+        opacity: .7;
+        cursor: pointer;
+        display: inline-block;
+        transition: transform .25s ease, opacity .25s ease;
+      }
+
+      @media (hover: hover) {
+        .tab.has-dropdown:hover .dropdown-caret {
+          transform: translateY(-3px);
+          /* ⬆ hover up */
+          opacity: 1;
+        }
+      }
+
+      .tab.has-dropdown.open .dropdown-caret {
+        transform: translateY(2px);
+        /* ⬇ when open */
+      }
+
+      .dropdown-item {
+        padding: 12px 16px;
+        font-size: .85rem;
+        color: #ccc;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      /* ================= MOBILE DROPDOWN TOGGLE ================= */
+      .dropdown-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #ccc;
+        font-size: .9rem;
+        margin-left: 6px;
+        cursor: pointer;
+      }
+
+      @media (hover: none) {
+        .dropdown-toggle {
+          display: inline-flex;
+          align-items: center;
+        }
+      }
+
+      .dropdown-item:hover {
+        background: rgba(255, 255, 255, .08);
+        color: var(--accent);
+      }
+
+      @media (hover: hover) {
+        .tab.has-dropdown:hover .dropdown {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      /* Mobile dropdown open state */
+      .tab.has-dropdown.open .dropdown {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* ================= MOBILE DROPDOWN TOGGLE ================= */
+      .dropdown-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: #ccc;
+        font-size: .9rem;
+        margin-left: 6px;
+        cursor: pointer;
+      }
+
+      @media (hover: none) {
+        .dropdown-toggle {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* hover does nothing on mobile */
+        .tab.has-dropdown:hover .dropdown {
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        /* ONLY JS-controlled open state */
+        .tab.has-dropdown.open .dropdown {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      @media (max-width: 480px) {
+        .tab {
+          padding: 12px 14px;
+          /* narrower */
+          font-size: .85rem;
+          /* slightly smaller */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .tabs-viewport {
+          overflow-x: auto;
+          overflow-y: hidden;
+          -webkit-overflow-scrolling: touch;
+          position: relative;
+          flex: 1;
+        }
+
+        .tabs {
+          flex: 0 0 auto;
+          justify-content: flex-start;
+          min-width: 100%;
+          padding-left: 16px;
+          padding-right: 24px;
+        }
+      }
+
+      /* ================= TABS SCROLL FADES (MOBILE ONLY) ================= */
+      @media (max-width: 768px) {
+
+        .tabs-viewport::before,
+        .tabs-viewport::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          width: 28px;
+          height: 100%;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity .25s ease;
+          z-index: 3;
+        }
+
+        /* LEFT fade */
+        .tabs-viewport::before {
+          left: 0;
+          background: linear-gradient(to right,
+              rgba(0, 0, 0, 0.85),
+              rgba(0, 0, 0, 0));
+        }
+
+        /* Activated dynamically via JS */
+        .tabs-viewport.fade-left::before {
+          opacity: 1;
+        }
+
+        .tabs-viewport.fade-right::after {
+          opacity: 1;
+        }
+      }
+
+      /* ================= SECTIONS ================= */
+      .section {
+        display: none;
+        max-width: 1200px;
+        margin: auto;
+        padding: 32px 20px;
+      }
+
+      .section.active {
+        display: block
+      }
+
+      /* ================= GRID ================= */
+      .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 32px;
+      }
+
+      @media(max-width:900px) {
+        .content-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      @media (max-width: 768px) {
+        .series-cover {
+          float: right;
+          width: 140px;
+          margin: 0 16px 8px 0;
+        }
+
+        .series-info-wrap p {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .series-cover {
+          float: right;
+          width: 140px;
+          margin: 0 0 8px 12px;
+        }
+
+        /* Only first paragraph wraps beside image */
+        .series-text p:first-of-type {
+          margin-top: 0;
+        }
+
+        /* Everything after flows BELOW the image */
+        .series-text p:not(:first-of-type) {
+          clear: both;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .frame {
+          padding: 20px;
+        }
+      }
+
+      /* ================= FRAME ================= */
+      .frame {
+        background: var(--panel);
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 32px;
+        border: 24px solid transparent;
+        border-image-source: var(--frame);
+        border-image-slice: 42;
+        border-image-repeat: round;
+      }
+
+      /* ================= BANNERS ================= */
+      .section-banner {
+        width: 100%;
+        height: 290px;
+        background: center/contain no-repeat;
+        margin: 20px 0 30px;
+        opacity: 0;
+        animation: bannerFade .6s ease forwards;
+      }
+
+      .header,
+      .section-banner {
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .header .logo-glitch {
+        pointer-events: auto;
+      }
+
+      @media (max-width: 768px) {
+        #about .section-banner {
+          height: 130px;
+          background-size: cover;
+          margin-bottom: 0px;
+        }
+      }
+
+      /* ================= SERIES FLOAT ================= */
+      .series-info-wrap {
+        overflow: hidden
+      }
+
+      .series-cover {
+        float: right;
+        width: 280px;
+        margin: 15px 0 0px -130px;
+        padding-left: 5px;
+        padding-bottom: 5px;
+      }
+
+      .series-cover img {
+        width: 50%;
+        float: right;
+      }
+
+      /* ================= TABLE ================= */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      td {
+        padding: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
+      }
+
+      /* ================= RULES ================= */
+      .rule {
+        border-left: 6px solid var(--accent);
+        padding: 14px;
+        margin-bottom: 14px;
+        background: rgba(0, 0, 0, .04);
+        cursor: pointer;
+        transition: background .3s;
+      }
+
+      .rule-full {
+        display: none;
+        margin-top: 8px;
+      }
+
+      .rule:hover {
+        background: rgba(196, 49, 40, .18)
+      }
+
+      body.dark .rule:hover {
+        background: rgba(214, 178, 94, .22)
+      }
+
+      .read-more {
+        display: inline-block;
+        margin-left: 4px;
+        font-size: .75rem;
+        color: var(--accent);
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      @media(max-width:768px) {
+        .staff-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .staff-card {
+        position: relative;
+        height: 400px;
+        padding: 1.5em;
+        border-radius: 1.5em;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* ================= STAFF ================= */
+      .staff-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 280px);
+        gap: 32px;
+        justify-content: center;
+      }
+
+      .staff-gender-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .staff-gender-row .gender-value {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .staff-gender-row img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+        transition: filter .25s ease, opacity .25s ease;
+      }
+
+      /* DARK MODE — convert black icons to white */
+      body.dark .staff-gender-row img {
+        filter: brightness(0) invert(1) contrast(1.5);
+        opacity: .95;
+      }
+
+      /* ================= STAFF IMAGE OVERLAY ================= */
+      .staff-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        /* NORMAL STATE — image mostly visible */
+        background: linear-gradient(to top,
+            color-mix(in srgb, var(--panel) 35%, transparent),
+            color-mix(in srgb, var(--panel) 15%, transparent) 55%,
+            transparent);
+        transition: background 0.3s ease;
+        pointer-events: none;
+      }
+
+      /* HOVER STATE — image dims */
+      .staff-card:hover::before {
+        background: linear-gradient(to top,
+            color-mix(in srgb, var(--panel) 65%, transparent),
+            color-mix(in srgb, var(--panel) 40%, transparent) 55%,
+            transparent);
+      }
+
+      /* Hover = lighter filler */
+      @media(max-width:768px) {
+        .staff-grid {
+          grid-template-columns: 1fr
+        }
+      }
+
+      .staff-card {
+        position: relative;
+        height: 400px;
+        padding: 1.5em;
+        border-radius: 1.5em;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* text container */
+      .staff-container {
+        position: relative;
+        color: var(--text);
+      }
+
+      /* name */
+      .staff-container h3 {
+        margin: 0;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      /* role */
+      .staff-container div {
+        font-size: .85rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      /* ================= STAFF DESCRIPTION TEXT ================= */
+      .staff-desc {
+        position: relative;
+        margin-top: 8px;
+        font-size: .6rem;
+        line-height: 1.45;
+        color: var(--text);
+        font-weight: 600;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .35s ease;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+      }
+
+      /* LIGHT MODE — extra contrast for description text */
+      body:not(.dark) .staff-desc {
+        text-shadow:
+          0 1px 2px rgba(0, 0, 0, .45),
+          0 0 6px color-mix(in srgb, var(--panel) 85%, transparent);
+      }
+
+      /* reveal */
+      .staff-card:hover .staff-desc {
+        max-height: 160px;
+      }
+
+      /* make card clearly clickable */
+      .staff-card {
+        cursor: pointer;
+      }
+
+      .staff-card:hover .staff-desc {
+        max-height: 160px
+      }
+
+      /* ================= SIDEBAR ================= */
+      .sidebar iframe {
+        width: 100%;
+        border: none
+      }
+
+      .sns-icons {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+      }
+
+      .sns-icons a {
+        position: relative;
+        /* needed for tooltip */
+      }
+
+      .sns-icons a::after {
+        content: attr(data-label);
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        background: rgba(0, 0, 0, .85);
+        color: #fff;
+        font-size: .65rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .25s ease, transform .25s ease;
+      }
+
+      /* ================= NEWS FEED ================= */
+      .news-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .news-tab {
+        flex: 1;
+        padding: 6px 8px;
+        font-size: .75rem;
+        background: rgba(0, 0, 0, .05);
+        border: none;
+        cursor: pointer;
+        color: var(--text);
+        border-bottom: 2px solid transparent;
+      }
+
+      .news-tab.active {
+        border-color: var(--accent);
+        font-weight: 600;
+      }
+
+      .news-refresh {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: var(--accent);
+      }
+
+      .news-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: .8rem;
+      }
+
+      .news-list li {
+        padding: 8px 0;
+        border-bottom: 1px dashed rgba(0, 0, 0, .15);
+      }
+
+      .news-list a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .news-list a:hover {
+        color: var(--accent);
+      }
+
+      .news-loading {
+        opacity: .7;
+        font-style: italic;
+      }
+
+      .sns-icons a:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(4px);
+      }
+
+      /* Light mode tweak for readability */
+      body:not(.dark) .sns-icons a::after {
+        background: rgba(40, 40, 40, .9);
+      }
+
+      .sns-icons a {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, .08);
+        border-radius: 50%;
+        transition: transform .3s, box-shadow .3s;
+      }
+
+      .sns-icons a:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 12px var(--accent);
+      }
+
+      .sns-icons img {
+        width: 24px;
+        transition: filter .25s ease, opacity .25s ease;
+      }
+
+      /* ================= SNS ICON DARK MODE FIX ================= */
+      body.dark .sns-icons img {
+        filter:
+          brightness(0) invert(1) contrast(1.6);
+        opacity: .95;
+      }
+
+      /* slightly stronger on hover */
+      body.dark .sns-icons a:hover img {
+        filter:
+          brightness(0) invert(1) contrast(1.35);
+        opacity: 1;
+      }
+
+      /* ================= FOOTER ================= */
+      footer {
+        background: #000;
+        color: #aaa;
+        padding: 40px 24px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+      }
+
+      footer h4 {
+        color: #fff
+      }
+
+      footer a {
+        color: var(--accent);
+        display: block;
+        text-decoration: none;
+        margin: 6px 0;
+        transition: color .25s, transform .25s, text-shadow .25s;
+      }
+
+      footer a:hover {
+        color: #fff;
+        transform: translateX(4px);
+        text-shadow: 0 0 6px var(--accent);
+      }
+
+      body.dark footer a:hover {
+        text-shadow: 0 0 8px var(--accent)
+      }
+
+      .footer-bottom {
+        margin-top: 32px;
+        text-align: center;
+        font-size: .8rem;
+      }
+
+      /* ================= STAFF MODAL ================= */
+      .staff-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .55);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .35s ease;
+        z-index: 9999;
+      }
+
+      .staff-modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      /* ID CARD */
+      .staff-modal-card {
+        width: 720px;
+        max-width: 90%;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        background: var(--panel);
+        border: 2px solid var(--accent);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+        animation: modalPop .35s ease;
+      }
+
+      @keyframes modalPop {
+        from {
+          transform: translateY(20px) scale(.96);
+          opacity: 0;
+        }
+
+        to {
+          transform: none;
+          opacity: 1;
+        }
+      }
+
+      /* LEFT IMAGE */
+      .staff-modal-img {
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* RIGHT INFO */
+      .staff-modal-info {
+        padding: 24px;
+        max-height: 500px;
+        overflow-y: auto;
+      }
+
+      .staff-modal-info h3 {
+        margin: 0;
+        letter-spacing: .12em;
+        color: var(--accent);
+      }
+
+      /* ================= STAFF MODAL — DISCORD IDENTITY ================= */
+      .staff-modal-discord {
+        margin-top: 4px;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: .75rem;
+        color: var(--text);
+        opacity: .85;
+      }
+
+      .staff-modal-discord .discord-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+
+      .staff-modal-discord img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+      }
+
+      /* ================= DISCORD ICON THEME ADAPT ================= */
+      /* Light mode (default) */
+      .staff-modal-discord img {
+        filter: none;
+      }
+
+      /* Dark mode — make icons light */
+      body.dark .staff-modal-discord img {
+        filter: brightness(0) invert(1);
+        opacity: .95;
+      }
+
+      .staff-modal-discord .divider {
+        opacity: .4;
+      }
+
+      /* ================= STAFF MODAL — DISCORD ROW ================= */
+      .staff-discord-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: .75rem;
+      }
+
+      .staff-discord-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+
+      .staff-discord-item img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+      }
+
+      /* Separator */
+      .staff-discord-sep {
+        opacity: .45;
+      }
+
+      /* DARK MODE — auto invert icons */
+      body.dark .staff-discord-item img {
+        filter: brightness(0) invert(1);
+        opacity: .95;
+      }
+
+      .staff-modal-discord span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        white-space: nowrap;
+      }
+
+      .staff-modal-discord .icon {
+        font-size: .85rem;
+        color: var(--accent);
+      }
+
+      /* ================= STAFF MODAL — ROLE PILLS (DISCORD STYLE) ================= */
+      .staff-modal-roles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin: 10px 0 6px;
+      }
+
+      /* single role pill */
+      .staff-role {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: .75rem;
+        font-weight: 600;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      /* role color dot */
+      .staff-role::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      .staff-modal-meta {
+        font-size: .85rem;
+        line-height: 1.6;
+        margin-top: 12px;
+      }
+
+      /* INTRODUCTION SECTION */
+      .staff-modal-intro {
+        margin-top: 16px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(0, 0, 0, .15);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .staff-modal-intro h4 {
+        margin: 0 0 8px;
+        font-size: .8rem;
+        letter-spacing: .15em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .staff-modal-intro p {
+        font-size: .8rem;
+        line-height: 1.6;
+        margin: 0;
+        white-space: normal;
+        max-height: 220px;
+        overflow-y: auto;
+        padding-right: 8px;
+      }
+
+      /* ================= INTRO SCROLLBAR ================= */
+      .staff-modal-intro p::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .staff-modal-intro p::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 6px;
+      }
+
+      .staff-modal-intro p::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, .08);
+      }
+
+      /* Firefox */
+      .staff-modal-intro p {
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent) rgba(0, 0, 0, .08);
+      }
+
+      /* CLOSE BUTTON */
+      .staff-modal-close {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid var(--accent);
+        background: rgba(0, 0, 0, .6);
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .25s ease, background .25s ease;
+      }
+
+      .staff-modal-close:hover {
+        transform: rotate(90deg) scale(1.1);
+        background: var(--accent);
+        color: #000;
+      }
+
+      /* ================= STAFF MODAL — MOBILE FIX ================= */
+      @media (max-width: 640px) {
+        .staff-modal {
+          align-items: center;
+          padding: 16px;
+        }
+
+        .staff-modal-card {
+          width: 100%;
+          max-height: 85vh;
+          grid-template-columns: 1fr;
+          /* switch to vertical */
+          overflow: hidden;
+        }
+
+        /* Image becomes top banner */
+        .staff-modal-img {
+          height: 200px;
+        }
+
+        /* Info section scrolls if needed */
+        .staff-modal-info {
+          padding: 16px;
+          overflow-y: auto;
+          max-height: calc(100vh - 260px);
+        }
+
+        .staff-modal-info h3 {
+          font-size: 1.05rem;
+        }
+
+        .staff-modal-roles {
+          font-size: .8rem;
+        }
+
+        .staff-modal-meta {
+          font-size: .8rem;
+        }
+
+        .staff-modal-intro p {
+          max-height: 140px;
+          /* slightly taller on mobile */
+        }
+
+        /* Close button easier to tap */
+        .staff-modal-close {
+          top: 12px;
+          left: 12px;
+          width: 36px;
+          height: 36px;
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (hover: none) {
+        .staff-card:hover .staff-desc {
+          max-height: 0;
+          /* disable hover-only behavior on touch */
+        }
+      }
+
+      @media (max-width: 768px) {
+        #leaderboard iframe {
+          height: 520px;
+        }
+      }
+
+      .leaderboard-card {
+        background:
+          linear-gradient(rgba(0, 0, 0, .55),
+            rgba(0, 0, 0, .55)),
+          var(--header-bg) center/cover no-repeat;
+        padding: 48px 32px;
+        border-radius: 18px;
+        text-align: center;
+        color: #fff;
+      }
+
+      .leaderboard-card h3 {
+        margin-top: 0;
+        letter-spacing: .12em;
+      }
+
+      .leaderboard-card p {
+        max-width: 520px;
+        margin: 12px auto 24px;
+        font-size: .9rem;
+        opacity: .9;
+      }
+
+      .leaderboard-btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform .25s, box-shadow .25s;
+      }
+
+      .leaderboard-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 14px var(--accent);
+      }
+
+      #toTop {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1px solid var(--accent);
+        background: var(--panel);
+        color: var(--accent);
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s ease, transform .3s ease;
+        z-index: 3000;
+      }
+
+      #toTop.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      #toTop:hover {
+        transform: translateY(-4px);
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          height: 220px;
+        }
+      }
+
+      @keyframes bannerFade {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ================= NEWS / THEORIES ================= */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+        margin-top: 24px;
+      }
+
+      .news-card {
+        background: var(--panel);
+        border: 2px solid var(--accent);
+        padding: 16px;
+        cursor: pointer;
+        transition: transform .25s ease, box-shadow .25s ease;
+      }
+
+      .news-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0 18px var(--accent);
+      }
+
+      .news-card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        margin-bottom: 12px;
+      }
+
+      .news-card h3 {
+        margin: 0 0 6px;
+        color: var(--accent);
+      }
+
+      .news-cta {
+        margin-top: 40px;
+        padding: 30px;
+        text-align: center;
+        border: 2px solid var(--accent);
+      }
+
+      .news-btn {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 10px 22px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #000;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform .25s ease, box-shadow .25s ease;
+      }
+
+      .news-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 14px var(--accent);
+      }
+
+      .theory-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .55);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .3s ease;
+        z-index: 9999;
+      }
+
+      .theory-modal.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .theory-modal-card {
+        background: var(--panel);
+        border: 2px solid var(--accent);
+        padding: 30px;
+        width: 700px;
+        max-width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="toTop" aria-label="Back to top">↑</button>
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-content">
+        <div class="logo-glitch">
+          <img src="assets/images/logo-en.png" class="logo base" alt="Gokurakugai Community Logo">
+          <img src="assets/images/logo-jp.png" class="logo glitch" alt="極楽街">
+        </div>
+        <h1>Gokurakugai Community</h1>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown">
+      <div class="count-box">
+        <div id="chapterLabel" class="count-title">Chapter 34 (JP/EN)</div>
+        <span id="chapter"></span>
+      </div>
+      <div class="count-box">Volume 6 (Japan)<span id="v6jp"></span></div>
+      <div class="count-box">Volume 5 (English)<span id="v5en"></span></div>
+    </div>
+
+    <!-- TABS -->
+    <!-- TABS -->
+    <div class="tabs-bar">
+      <div class="tabs-viewport">
+        <div class="tabs">
+
+          <div class="tab active" data-tab="about">About</div>
+
+          <div class="tab has-dropdown" data-tab="manga">
+            <span class="tab-label">Manga</span>
+            <span class="dropdown-caret" aria-hidden="true">▾</span>
+            <div class="dropdown">
+              <div class="dropdown-item" data-tab="manga-gallery">Gallery</div>
+              <div class="dropdown-item" data-tab="manga-characters">Characters</div>
+            </div>
+          </div>
+          <div class="tab" data-tab="news">News</div>
+          <div class="tab" data-tab="theories">Theories</div>
+          <div class="tab" data-tab="rules">Rules</div>
+          <div class="tab" data-tab="info">Info</div>
+          <div class="tab" data-tab="staff">Staff</div>
+          <div class="tab" data-tab="leaderboard">Leaderboard</div>
+
+        </div>
+      </div>
+
+      <button class="theme-toggle" id="themeToggle">🌙</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section active" id="about">
+      <div class="content-grid">
+        <main>
+
+          <div class="frame">
+            <h2>About Our Server</h2>
+            <div class="section-banner" style="background-image:url('assets/images/banner-server.png')"></div>
+            <p>
+              We’re a Discord community devoted to <strong>Gokurakugai</strong>, the action-supernatural manga series written and illustrated by <strong>Yuto Sano</strong>.
+              The series first introduced as a one-shot titled <strong>Gokurakugai Sanbandori No Ken</strong>, published in the
+              <strong>Jump SQ.RISE Winter 2020 Issue</strong> on January 27, 2020.
+              Its gritty tone and compelling characters struck a chord with readers, prompting its evolution into a full-fledged series.
+              Serialization officially began in the monthly <strong>Jump SQ Magazine</strong> on July 4, 2022,
+              and the manga later made its formal debut in <strong>Jump SQ.Rise</strong> (ジャンプ SQ.RISE) on July 4, 2023.
+            </p>
+            <p>
+              By being a member of our Discord server, you indicate that you have read and accepted our server rules,
+              as well as Discord’s Terms of Service and Community Guidelines.
+            </p>
+          </div>
+
+          <div class="frame series-info-wrap">
+            <h2>About the Series</h2>
+            <div class="section-banner" style="background-image:url('assets/images/banner-series.png')"></div>
+
+            <div class="series-media">
+              <div class="series-cover">
+                <img src="assets/images/series-cover.jpg">
+              </div>
+
+              <div class="series-text">
+                <p><em>
+                    Gokurakugai, a bright and bustling working class district with a hidden dark side.
+                    In this area without order, Tao and Alma work as troubleshooters for hire.
+                    Their missions involve helping a young boy find his lost friend,
+                    a person who disappears without a trace, and disfigured animal corpses.
+                    All the while, the evil spirits who live in the shadows bring out a different side to these troubleshooters!
+                  </em></p>
+
+                <p>
+                  <strong>Gokurakugai</strong> (Japanese: 極楽街, Hepburn: <em>Gokurakugai</em>, lit. “Paradise Street” or “Gokuraku District”)
+                  is a Japanese manga series in the action-supernatural genre, written and illustrated by <strong>Yuto Sano</strong>.
+                  It made its official debut in the pages of <strong>Jump SQ.Rise</strong> on July 4, 2022.
+                </p>
+
+                <p>
+                  Initially introduced as a one-shot, known as <em>Gokurakugai: Trouble on Third Avenue</em>,
+                  it later evolved into a regularly published series within the monthly <strong>Jump SQ Magazine</strong>,
+                  starting from July 4, 2022. This transition happened because of the positive response it received from readers
+                  when it was featured in the <strong>Jump SQ RISE Winter 2020 Issue</strong> on January 27, 2020.
+                </p>
+              </div>
+            </div>
+
+            <table>
+              <tr>
+                <td><strong>Title</strong></td>
+                <td>Gokurakugai (極楽街)</td>
+              </tr>
+              <tr>
+                <td><strong>Magazine</strong></td>
+                <td>Jump SQ. Rise</td>
+              </tr>
+              <tr>
+                <td><strong>Publisher</strong></td>
+                <td>SHUEISHA</td>
+              </tr>
+              <tr>
+                <td><strong>Schedule</strong></td>
+                <td>Monthly</td>
+              </tr>
+              <tr>
+                <td><strong>Original Run</strong></td>
+                <td>Jan 27, 2020 (One-shot)<br>July 4, 2022 (Official)</td>
+              </tr>
+            </table>
+          </div>
+
+        </main>
+
+        <aside class="sidebar">
+
+          <div class="frame">
+            <h3>Media</h3>
+            <iframe height="200" src="https://www.youtube.com/embed/W0A7JOGZF9Y" allowfullscreen></iframe>
+          </div>
+
+          <div class="frame">
+            <h3>Latest News</h3>
+
+            <div class="news-tabs">
+              <button class="news-tab active" data-query="Gokurakugai">Gokurakugai</button>
+              <button class="news-tab" data-query="極楽街">極楽街</button>
+              <button class="news-refresh" title="Reload news">⟳</button>
+            </div>
+
+            <ul class="news-list" id="newsList">
+              <li class="news-loading">Loading news…</li>
+            </ul>
+          </div>
+
+          <div class="frame">
+            <h3>Join us!</h3>
+            <iframe src="https://discord.com/widget?id=995737046725443686&theme=dark" height="420"></iframe>
+          </div>
+
+          <div class="frame">
+            <h3>Follow us!</h3>
+            <div class="sns-icons">
+              <a href="https://x.com/gokurakugainews" data-label="Twitter / X">
+                <img src="assets/icons/twitter.png">
+              </a>
+
+              <a href="https://www.instagram.com/gokurakugaiwiki/" data-label="Instagram">
+                <img src="assets/icons/instagram.png">
+              </a>
+
+              <a href="#" data-label="Wiki">
+                <img src="assets/icons/wiki.png">
+              </a>
+
+              <a href="https://www.facebook.com/gokurakugai" data-label="Facebook">
+                <img src="assets/icons/facebook.png">
+              </a>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="section" id="rules">
+      <div class="frame">
+        <h2>Server Rules</h2>
+        <p>
+          These are the extended and detailed rules for the Gokurakugai Discord Server.
+          By joining and participating in our community, you agree to follow all rules listed below,
+          as well as Discord’s Terms of Service and Community Guidelines.
+          Failure to comply may result in moderation actions at staff discretion.
+        </p>
+        <div id="rulesList"></div>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <div class="section" id="info">
+      <div class="frame">
+        <h2>Server Info</h2>
+        <p>Coming soon.</p>
+      </div>
+    </div>
+    <!-- MANGA (PARENT / LANDING SECTION) -->
+    <div class="section" id="manga">
+      <div class="frame">
+        <h2>Manga</h2>
+        <p>Select a category above.</p>
+      </div>
+    </div>
+
+    <!-- MANGA -->
+    <div class="section" id="manga-gallery">
+      <div class="frame">
+        <h2>Manga Gallery</h2>
+        <p>Coming soon…</p>
+      </div>
+    </div>
+
+    <div class="section" id="manga-characters">
+      <div class="frame">
+        <h2>Manga Characters</h2>
+        <p>Coming soon…</p>
+      </div>
+    </div>
+
+    <!-- NEWS -->
+    <div class="section" id="news">
+      <div class="frame">
+
+        <h2>News & Discussions</h2>
+
+        <!-- Featured Article (renders only if exists) -->
+        <div id="featuredNews"></div>
+
+        <!-- News Grid -->
+        <div id="newsGrid" class="news-grid"></div>
+
+        <!-- Discord CTA -->
+        <div class="news-cta">
+          <h3>Never Miss an Update</h3>
+          <p>Join our Discord server for announcements and releases.</p>
+          <a href="https://discord.gg/gokurakugai" target="_blank" class="news-btn">
+            Join Discord
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- THEORIES -->
+    <div class="section" id="theories">
+      <div class="frame">
+
+        <!-- INTRO -->
+        <h2>🔥 Fan Theory Submission</h2>
+        <p>
+          Share your theories about Gokurakugai with the community.
+          Whether it’s character backstories, plot predictions,
+          or hidden meanings — we want to hear your ideas.
+        </p>
+
+        <!-- GUIDELINES -->
+        <div class="frame" style="margin-top:20px;">
+          <h3>Submission Guidelines</h3>
+          <ul>
+            <li>Theories must be original and your own work</li>
+            <li>Include evidence from the manga to support your theory</li>
+            <li>Mark spoilers appropriately</li>
+            <li>Be respectful — no bashing other members</li>
+            <li>Approved theories may be featured publicly</li>
+          </ul>
+        </div>
+
+        <!-- SUBMISSION FORM -->
+        <div class="frame" style="margin-top:30px;">
+          <h3>Submit Your Theory</h3>
+
+          <!-- DISCORD LOGIN BUTTON -->
+          <div id="loginArea" style="margin-bottom:20px;">
+            <a href="http://localhost:3000/login" class="news-btn">
+              Login with Discord
+            </a>
+          </div>
+
+          <form id="theoryForm">
+
+            <!-- DISCORD AUTO-FILL USER INFO -->
+            <label>Displayed Name *</label><br>
+            <input type="text" id="displayName" readonly style="width:100%; margin-bottom:15px;">
+
+            <label>Username *</label><br>
+            <input type="text" id="username" readonly style="width:100%; margin-bottom:15px;">
+
+            <label>User ID *</label><br>
+            <input type="text" id="userId" readonly style="width:100%; margin-bottom:15px;">
+
+            <label>Theory Title *</label><br>
+            <input type="text" required style="width:100%; margin-bottom:15px;">
+
+            <label>Category *</label><br>
+            <select required style="width:100%; margin-bottom:15px;">
+              <option value="">Select a category</option>
+              <option>Character Origins</option>
+              <option>Plot Predictions</option>
+              <option>Power System Analysis</option>
+              <option>World Building</option>
+              <option>Character Relationships</option>
+              <option>Hidden Symbolism</option>
+              <option>Villain Theories</option>
+              <option>Ending Predictions</option>
+              <option>Other</option>
+            </select>
+
+            <label>Your Theory *</label><br>
+            <textarea required maxlength="500" style="width:100%; height:120px; margin-bottom:15px;"></textarea>
+
+            <label>Supporting Evidence</label><br>
+            <textarea maxlength="500" style="width:100%; height:100px; margin-bottom:15px;"></textarea>
+
+            <div style="margin-bottom:15px;">
+              <input type="checkbox"> Contains Spoilers
+            </div>
+
+            <div style="margin-bottom:15px;">
+              <input type="checkbox" required>
+              I agree to the community guidelines *
+            </div>
+
+            <button type="submit" class="news-btn">Submit Theory</button>
+
+          </form>
+        </div>
+
+        <!-- POPULAR (ONLY RENDERS IF DATA EXISTS) -->
+        <div id="theoryGrid" class="news-grid" style="margin-top:40px;"></div>
+
+      </div>
+    </div>
+
+    <!-- STAFF -->
+    <div class="section" id="staff">
+      <div class="frame">
+        <h2>About the Staff</h2>
+        <div class="staff-grid">
+
+          <!-- 1 — RION -->
+          <div class="staff-card" style="background-image:url('assets/images/staff1.png')" data-id="RION" data-name="RION" data-discord="jetnoire" data-discord-id="861651187949633547" data-roles="Founder, Admin" data-age="18+" data-gender="Female" data-timezone="GMT+1, GMT+9" data-birthday="January 14" data-intro="Hi hi! I’m **Rion (jetnoire)**, mostly active around shonen animanga spaces and wiki projects. You can call me Rion, Jet, or just Noire if that’s easier. 🖤&#10;I started editing wikis out of pure hyperfixation energy (you know how it goes). What began as simply loving a series slowly turned into diving deep into how wikis actually work. I spent weeks learning the ins and outs, from the basics of formatting to more advanced layout work using CSS and HTML, until I was confident enough to start properly revamping and organizing pages.&#10;After my first major project, I expanded into handling and managing other series as well. I’m especially drawn to shonen (with a soft spot for darker themes), though I occasionally branch out when something catches my interest. My main strength lies in designing layouts that actually *feel* like the series, matching themes, refining navigation, cleaning structures, and making everything look cohesive rather than chaotic.&#10;As I gained more experience (I’d say somewhere around that “I know what I’m doing but still learning” stage 😅), I started connecting with more editors and communities. That’s when things became less of a solo project and more of a collaborative space for growth.&#10;There was also a brief “let me just try my luck” phase when I applied for the star program. The first attempt didn’t go through, which honestly discouraged me a bit. But after some time (and a little push from someone who believed in me), I reapplied, and this time, it worked out. And yeah, that’s me.">
+
+            <div class="staff-container">
+              <h3>RION</h3>
+              <div>Founder · Admin</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 2 — ANDY -->
+          <div class="staff-card" style="background-image:url('assets/images/staff2.png')" data-id="ANDY" data-name="ANDY" data-discord="resoluteroyalty" data-discord-id="727231548255895743" data-roles="Admin" data-age="18+" data-gender="Male" data-timezone="CET" data-birthday="August 13" data-intro="I am a dedicated enthusiast and loyal administrator/moderator of the Gokurakugai manga community.&#10;I have consistently worked to foster a positive, inclusive, and engaging environment for all members.&#10;I embrace responsibility, express my views thoughtfully, and take genuine pleasure in sharing my knowledge, experiences, and advice with others.&#10;I pride myself on being proud, loyal, and honest. I derive deep satisfaction from supporting and assisting those around me.&#10;Motivated by ambition, I am committed to achieving meaningful accomplishments in the years ahead.&#10;My interests span a wide range of subjects, and I approach people, ideas, and life with a distinctive and principled perspective. While I place strong emphasis on health, success, and financial independence, I also value balance, knowing how to relax, enjoy life, and embrace moments of play and leisure.&#10;Occupation: Founder & CEO of a small company, Software Developer, Graphic Designer.&#10;Hobbies: Video games, Digital Design, Music, Content creation.&#10;Skills: Web Design, 3D Modeling, 3D Animation, Software Design, Indie Game Development, Video Editing, Image Editing, Digital Art, Music Production.&#10;Likes: Success, recognition, wealth, personal freedom, roles in leadership, profound and intellectual discussions, politics, psychology, futurism, utopian concepts, and helping others achieve their potential.&#10;Dislikes: Dishonesty, disrespect, disloyalty, low self-worth, betrayal or backstabbing, ingratitude, morally reprehensible behavior, harm to others, apathy toward important topics, and inauthenticity.">
+
+            <div class="staff-container">
+              <h3>ANDY</h3>
+              <div>Admin</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+          <!-- 3 — TORTOL -->
+          <div class="staff-card" style="background-image:url('assets/images/staff3.png')" data-id="TORTOL" data-name="TORTOL" data-discord="tortilinni" data-discord-id="932931370894884924" data-roles="Admin" data-age="18+" data-gender="Male" data-timezone="EST" data-birthday="April 10" data-intro="I am a heavy music lover, video game lover, and anime lover with the recent addiction to Gokurakugai. I also play bass.&#10;Some of my favorite bands right now include: Architects, Knocked Loose, 156/Silence, and Archspire.&#10;Some of my favorite anime include: Gachiakuta, Welcome to Demon School Iruma-Kun and Demon Slayer.&#10;What I love about Gokurakugai so far are the characters, art, concepts and world building. I'm also a big fan of the official arts and bonus panels that are blessed to us from time to time.&#10;Other: I like turtles.">
+
+            <div class="staff-container">
+              <h3>TORTOL</h3>
+              <div>Admin</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 4 — rwottenhrts -->
+          <div class="staff-card" style="background-image:url('assets/images/staff4.png')" data-id="RWOTTENHRTS" data-name="rwottenhrts" data-discord="rwottenhrts" data-discord-id="1114585051515080704" data-roles="Admin" data-age="-18" data-gender="Male" data-timezone="GMT+8" data-birthday="December 8" data-intro="Mostly a behind-the-scenes staff member. I’ve been a big fan of Gokurakugai since the very first simul-pubbed chapter and have followed up with it to this day. I enjoy volunteering, and I spend my free time playing the piano and guitar.">
+
+            <div class="staff-container">
+              <h3>rwottenhrts</h3>
+              <div>Admin</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 5 — NAZARETH -->
+          <div class="staff-card" style="background-image:url('assets/images/staff5.png')" data-id="NAZARETH" data-name="NAZARETH" data-discord="thenazar3th" data-discord-id="1324486337650360380" data-roles="Admin" data-age="18+" data-gender="Female" data-timezone="GMT" data-birthday="January 29" data-intro="Hey! I really enjoy building communities and helping give them a strong start. I care a lot about making spaces that feel comfortable, safe, and welcoming for everyone.&#10;I love animals, and I try to live by strong ethical and moral values in how I treat both people and the world around me.&#10;I’m currently studying Dentistry, so I might be a bit busy or slow to respond sometimes, but I’m still around!&#10;I also love reading manga, manhua, manhwa, and novels, so feel free to talk to me about recommendations anytime :)">
+
+            <div class="staff-container">
+              <h3>NAZARETH</h3>
+              <div>Admin</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 6 — AKKI -->
+          <div class="staff-card" style="background-image:url('assets/images/staff6.png')" data-id="AKKI" data-name="AKKI" data-discord="siakki" data-discord-id="448594891568709652" data-roles="Moderator" data-age="18+" data-gender="Female" data-timezone="GMT+3" data-birthday="October 19" data-intro="Full time project manager and content editor, self taught traditional artist, spending free time at the gym, playing video games or watching anime. Love travelling, writing, collecting manga and all the cats of the world.&#10;Gokurakugai: I think the story is interesting so far, love the attention to character designs and the overall clean and pretty manga style.">
+
+            <div class="staff-container">
+              <h3>AKKI</h3>
+              <div>Moderator</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 7 — MOON -->
+          <div class="staff-card" style="background-image:url('assets/images/staff7.png')" data-id="MOON" data-name="MOON" data-discord="vyrmoon" data-discord-id="717012902275448845" data-roles="Moderator" data-age="-18" data-gender="Female" data-timezone="GMT+3" data-birthday="September 23" data-intro="I like video editing and designing. I'm a big fan of reading manhwa/manga.&#10;Gokurakugai: I got drawn into it mainly because of the art and covers, but I enjoy the overall theme and story too.">
+
+            <div class="staff-container">
+              <h3>MOON</h3>
+              <div>Moderator</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 8 — SPRING -->
+          <div class="staff-card" style="background-image:url('assets/images/staff8.png')" data-id="SPRING" data-name="SPRING" data-discord="userspring" data-discord-id="456747461323784202" data-roles="Moderator" data-age="18+" data-gender="Male" data-timezone="TBA" data-birthday="TBA" data-intro="To be added...">
+
+            <div class="staff-container">
+              <h3>SPRING</h3>
+              <div>Moderator</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+          <!-- 9 — ARABELLA -->
+          <div class="staff-card" style="background-image:url('assets/images/staff9.png')" data-id="ARABELLA" data-name="ARABELLA" data-discord="ara679" data-discord-id="808887501418266624" data-roles="Trial Moderator" data-age="18" data-gender="Female" data-timezone="GMT-5" data-birthday="September 10" data-intro="My brother recommended I read Gokurakugai over a year ago, and I quickly fell in love with the series. I’ve gotten busy with school and work in the past few months but in my free time I enjoy going for walks, taking care of my many houseplants, and playing games, typically The Sims 4 or One Piece Bounty Rush.">
+
+            <div class="staff-container">
+              <h3>ARABELLA</h3>
+              <div>Trial Moderator</div>
+            </div>
+            <p class="staff-desc"><span class="staff-preview"></span><span class="read-more"> Read more</span></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- STAFF MODAL -->
+    <div class="staff-modal" id="staffModal">
+      <div class="staff-modal-card">
+        <button class="staff-modal-close" id="staffModalClose">✕</button>
+
+        <div class="staff-modal-img" id="modalImg"></div>
+
+        <div class="staff-modal-info">
+          <h3 id="modalName"></h3>
+
+          <!-- DISCORD IDENTITY -->
+          <div class="staff-modal-discord" id="modalDiscord"></div>
+
+          <div class="staff-modal-roles" id="modalRoles"></div>
+
+          <div class="staff-modal-meta" id="modalMeta"></div>
+
+          <!-- INTRODUCTION -->
+          <div class="staff-modal-intro">
+            <h4>Introduction</h4>
+            <p id="modalIntro"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADERBOARD -->
+    <div class="section" id="leaderboard">
+      <div class="frame">
+        <h2>Server Leaderboard</h2>
+
+        <p>
+          This leaderboard is powered by our Discord leveling system.
+          Rankings update automatically based on server activity.
+        </p>
+
+        <div class="leaderboard-card">
+          <div class="leaderboard-cover">
+            <h3>Live Discord Leaderboard</h3>
+            <p>
+              Rankings are powered by MEE6 and update automatically based on server activity.
+            </p>
+
+            <a href="https://mee6.xyz/leaderboard/995737046725443686" target="_blank" rel="noopener" class="leaderboard-btn">
+              View Full Leaderboard ↗
+            </a>
+          </div>
+        </div>
+
+        <p style="font-size:.75rem; opacity:.7; margin-top:10px;">
+          Leaderboard provided by MEE6.
+        </p>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h4>Community</h4>
+          <a href="https://discord.gg/gokurakugai">Join Discord</a>
+          <a href="#rules">Server Rules</a>
+          <a href="#staff">Staff</a>
+          <a href="#info">Server Info</a>
+        </div>
+
+        <div>
+          <h4>Gokurakugai</h4>
+          <a href="https://jumpsq.shueisha.co.jp/rensai/gokurakugai/">Jump SQ</a>
+          <a href="https://www.viz.com/shonenjump/chapters/gokurakugai">VIZ</a>
+          <a href="https://mangaplus.shueisha.co.jp/titles/100230">MANGA Plus</a>
+        </div>
+
+        <div>
+          <h4>Official Links</h4>
+          <a href="https://x.com/Yuto___Sano">Yuto Sano (X)</a>
+          <a href="https://www.instagram.com/yuto__sano">Yuto Sano (Instagram)</a>
+          <a href="https://x.com/gokurakugaiinfo">Gokurakugai Info</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Gokurakugai Discord Server · Fan-run · Not affiliated with Shueisha
+      </div>
+    </footer>
+
+    <!-- THEORY MODAL -->
+    <div class="theory-modal" id="theoryModal">
+      <div class="theory-modal-card" id="theoryModalCard"></div>
+    </div>
+
+    <script>
+      /* THEME */
+      const toggle = document.getElementById("themeToggle");
+      toggle.onclick = () => {
+        document.body.classList.toggle("dark");
+        toggle.textContent = document.body.classList.contains("dark") ? "☀" : "🌙";
+      };
+      /* TABS */
+      /* ================= TABS + HASH SUPPORT ================= */
+      function activateTab(id) {
+        // Activate sections
+        document.querySelectorAll(".section").forEach(section => {
+          section.classList.toggle("active", section.id === id);
+        });
+        // Clear all tab states
+        document.querySelectorAll(".tab").forEach(tab => {
+          tab.classList.remove("active");
+        });
+        // Direct tab match (About, Rules, etc.)
+        const directTab = document.querySelector(`.tab[data-tab="${id}"]`);
+        if (directTab) {
+          directTab.classList.add("active");
+        }
+        // Manga children → activate Manga parent
+        if (id.startsWith("manga")) {
+          document.querySelector(".tab.has-dropdown")?.classList.add("active");
+        }
+      }
+      /* ================= TABS CLICK LOGIC ================= */
+      document.querySelectorAll(".tab").forEach(tab => {
+        const label = tab.querySelector(".tab-label");
+        // Tabs WITHOUT dropdown
+        if (!tab.classList.contains("has-dropdown")) {
+          tab.addEventListener("click", () => {
+            const id = tab.dataset.tab;
+            history.pushState(null, "", `#${id}`);
+            activateTab(id);
+          });
+          return;
+        }
+        // Tabs WITH dropdown → clicking tab navigates
+        tab.addEventListener("click", e => {
+          // Ignore caret clicks (caret handled separately)
+          if (e.target.closest(".dropdown-caret")) return;
+          const id = tab.dataset.tab;
+          history.pushState(null, "", `#${id}`);
+          activateTab(id);
+          tab.classList.remove("open");
+        });
+        // Label explicitly navigates (extra safety)
+        if (label) {
+          label.addEventListener("click", e => {
+            e.stopPropagation();
+            const id = tab.dataset.tab;
+            history.pushState(null, "", `#${id}`);
+            activateTab(id);
+            tab.classList.remove("open");
+          });
+        }
+      });
+      // Dropdown caret click (mobile + desktop)
+      document.querySelectorAll(".dropdown-caret").forEach(caret => {
+        caret.addEventListener("click", e => {
+          e.preventDefault(); // 🔑 required on mobile
+          e.stopPropagation();
+          const tab = caret.closest(".tab.has-dropdown");
+          const isOpen = tab.classList.contains("open");
+          document.querySelectorAll(".tab.has-dropdown").forEach(t => {
+            t.classList.remove("open");
+          });
+          if (!isOpen) {
+            tab.classList.add("open");
+          }
+        });
+      });
+      // Close dropdown on mouse leave — DESKTOP ONLY
+      if (window.matchMedia("(hover: hover)").matches) {
+        document.querySelectorAll(".tab.has-dropdown").forEach(tab => {
+          tab.addEventListener("mouseleave", () => {
+            tab.classList.remove("open");
+          });
+        });
+      }
+      document.querySelectorAll(".dropdown-item").forEach(item => {
+        item.addEventListener("click", e => {
+          e.stopPropagation();
+          const id = item.dataset.tab;
+          history.pushState(null, "", `#${id}`);
+          activateTab(id);
+          // Close dropdown after selection
+          document.querySelectorAll(".tab.has-dropdown").forEach(t => {
+            t.classList.remove("open");
+          });
+        });
+      });
+      // Hash navigation (direct links & refresh)
+      function handleHash() {
+        const raw = location.hash.replace("#", "").split("?")[0];
+        // Ignore dropdown-only parent
+        if (raw === "manga" || raw === "") {
+          activateTab("about");
+          return;
+        }
+        // Valid section
+        if (document.getElementById(raw)) {
+          activateTab(raw);
+          return;
+        }
+        // Fallback
+        activateTab("about");
+      }
+      window.addEventListener("hashchange", handleHash);
+      handleHash();
+      /* ================= RULES ================= */
+      const rl = document.getElementById("rulesList");
+      // Create rules
+      for (let i = 1; i <= 20; i++) {
+        const rule = document.createElement("div");
+        rule.className = "rule";
+        rule.dataset.rule = i;
+        rule.innerHTML = `
+    <strong>Rule #${i}</strong>
+    <p class="rule-full">Full rule description here.</p>
+  `;
+        rl.appendChild(rule);
+      }
+      // Helper: close all rules
+      function closeAllRules() {
+        document.querySelectorAll(".rule-full").forEach(p => {
+          p.style.display = "none";
+        });
+      }
+      // Click handling (toggle)
+      rl.addEventListener("click", e => {
+        const rule = e.target.closest(".rule");
+        if (!rule) return;
+        const full = rule.querySelector(".rule-full");
+        const ruleNum = rule.dataset.rule;
+        // If clicking "Read more" → open + update URL
+        if (e.target.classList.contains("read-more")) {
+          e.stopPropagation();
+          closeAllRules();
+          full.style.display = "block";
+          history.pushState(null, "", `#rules/${ruleNum}`);
+          return;
+        }
+        // Normal toggle click
+        const isOpen = full.style.display === "block";
+        closeAllRules();
+        if (!isOpen) {
+          full.style.display = "block";
+          history.pushState(null, "", `#rules/${ruleNum}`);
+        } else {
+          history.pushState(null, "", "#rules");
+        }
+      });
+      // Handle direct hash navigation & back button
+      function handleRuleHash() {
+        if (!location.hash.startsWith("#rules")) return;
+        activateTab("rules");
+        closeAllRules();
+        const parts = location.hash.split("/");
+        if (parts.length === 2) {
+          const num = parts[1];
+          const rule = document.querySelector(`.rule[data-rule="${num}"]`);
+          if (rule) {
+            const full = rule.querySelector(".rule-full");
+            full.style.display = "block";
+            rule.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+          }
+        }
+      }
+      window.addEventListener("load", handleRuleHash);
+      window.addEventListener("popstate", handleRuleHash);
+      /* ================= JST COUNTDOWN ================= */
+      function nowJST() {
+        return new Date(
+          new Date().toLocaleString("en-US", {
+            timeZone: "Asia/Tokyo"
+          })
+        );
+      }
+      let baseChapterNumber = 34;
+
+      function updateChapter() {
+        const now = nowJST();
+        // Anchor: Mar 4, 2026 (00:00 JST) = Chapter 34
+        const anchorDate = new Date("2026-03-04T00:00:00+09:00");
+        let monthsPassed =
+          (now.getFullYear() - anchorDate.getFullYear()) * 12 +
+          (now.getMonth() - anchorDate.getMonth());
+        // If before the 4th JST, don't count the new month yet
+        if (now.getDate() < 4) {
+          monthsPassed -= 1;
+        }
+        const currentChapter = baseChapterNumber + Math.max(0, monthsPassed);
+        // Update chapter label text
+        document.getElementById("chapterLabel").textContent =
+          `Chapter ${currentChapter} (JP/EN)`;
+        // Release timing (always 4th–5th JST)
+        const release = new Date(now.getFullYear(), now.getMonth(), 4, 0, 0, 0);
+        const releasedDay = new Date(now.getFullYear(), now.getMonth(), 5, 0, 0, 0);
+        // Show "Released" only on the 4th
+        if (now >= release && now < releasedDay) {
+          document.getElementById("chapter").textContent = "Released";
+          return;
+        }
+        // Otherwise countdown to next valid release
+        const target =
+          now >= releasedDay ?
+          new Date(now.getFullYear(), now.getMonth() + 1, 4, 0, 0, 0) :
+          release;
+        runCountdown("chapter", target);
+      }
+
+      function updateVolumes() {
+        document.getElementById("v6jp").textContent = "Released";
+        runCountdown("v5en", new Date("2026-04-07T00:00:00+09:00"), true);
+      }
+
+      function runCountdown(id, target, allowReleased) {
+        const diff = target - nowJST();
+        if (diff <= 0 && allowReleased) {
+          document.getElementById(id).textContent = "Released";
+          return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor(diff % 86400000 / 3600000);
+        const m = Math.floor(diff % 3600000 / 60000);
+        const s = Math.floor(diff % 60000 / 1000);
+        document.getElementById(id).textContent = `${d}d ${h}h ${m}m ${s}s`;
+      }
+      /* ================= NEWS FEED ================= */
+      const newsList = document.getElementById("newsList");
+      const newsTabs = document.querySelectorAll(".news-tab");
+      const refreshBtn = document.querySelector(".news-refresh");
+      let currentQuery = "Gokurakugai";
+
+      function loadNews(query) {
+        if (!newsList) return;
+        newsList.innerHTML = `<li class="news-loading">Loading news…</li>`;
+        // Language-aware RSS source
+        const isJapanese = query === "極楽街";
+        const timeFilter = "when:7d"; // force recent-only results
+        const rssURL = isJapanese ?
+          `https://news.google.com/rss/search?q=${encodeURIComponent(query + " " + timeFilter)}&hl=ja&gl=JP&ceid=JP:ja` :
+          `https://news.google.com/rss/search?q=${encodeURIComponent(query + " " + timeFilter)}&hl=en-US&gl=US&ceid=US:en`;
+        const proxy =
+          `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
+        fetch(proxy)
+          .then(r => r.json())
+          .then(data => {
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data.contents, "text/xml");
+            const items = [...xml.querySelectorAll("item")]
+              .sort((a, b) => {
+                const dateA = new Date(a.querySelector("pubDate")?.textContent || 0);
+                const dateB = new Date(b.querySelector("pubDate")?.textContent || 0);
+                return dateB - dateA; // NEWEST FIRST
+              })
+              .slice(0, 5);
+            if (!items.length) {
+              newsList.innerHTML = `<li>No news found.</li>`;
+              return;
+            }
+            newsList.innerHTML = items.map(item => {
+              const title = item.querySelector("title").textContent;
+              const link = item.querySelector("link").textContent;
+              return `<li><a href="${link}" target="_blank" rel="noopener">${title}</a></li>`;
+            }).join("");
+          })
+          .catch(() => {
+            newsList.innerHTML = `<li>Failed to load news.</li>`;
+          });
+      }
+      newsTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          newsTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentQuery = tab.dataset.query;
+          loadNews(currentQuery);
+        });
+      });
+      refreshBtn.addEventListener("click", () => {
+        loadNews(currentQuery);
+      });
+      loadNews(currentQuery);
+      setInterval(() => {
+        updateChapter();
+        updateVolumes();
+      }, 1000);
+      /* ================= STAFF MODAL LOGIC ================= */
+      const modal = document.getElementById("staffModal");
+      const modalImg = document.getElementById("modalImg");
+      const modalName = document.getElementById("modalName");
+      const modalRoles = document.getElementById("modalRoles");
+      const modalMeta = document.getElementById("modalMeta");
+      const modalClose = document.getElementById("staffModalClose");
+      const modalIntro = document.getElementById("modalIntro");
+      const modalDiscord = document.getElementById("modalDiscord");
+
+      function openStaffModal(card, skipHistory = false) {
+        modalImg.style.backgroundImage = card.style.backgroundImage;
+        modalName.textContent = card.dataset.name || "";
+        /* ================= DISCORD IDENTITY ================= */
+        const discordUser = card.dataset.discord;
+        const discordId = card.dataset.discordId;
+        if (discordUser || discordId) {
+          modalDiscord.innerHTML = `
+    <div class="staff-discord-row">
+      ${discordUser ? `
+        <span class="staff-discord-item">
+          <img src="assets/icons/discord-user.png" alt="">
+          <span>@${discordUser}</span>
+        </span>
+      ` : ""}
+
+      ${discordUser && discordId ? `<span class="staff-discord-sep">|</span>` : ""}
+
+      ${discordId ? `
+        <span class="staff-discord-item">
+          <img src="assets/icons/discord-id.png" alt="">
+          <span>${discordId}</span>
+        </span>
+      ` : ""}
+    </div>
+  `;
+        } else {
+          modalDiscord.innerHTML = "";
+        }
+        /* ================= ROLE PILLS ================= */
+        modalRoles.innerHTML = "";
+        if (card.dataset.roles) {
+          const roles = card.dataset.roles.split(",").map(r => r.trim());
+          roles.forEach(role => {
+            const pill = document.createElement("span");
+            pill.className = "staff-role";
+            pill.textContent = role;
+            modalRoles.appendChild(pill);
+          });
+        }
+        const genderRaw = card.dataset.gender || "";
+        let genderIcon = "";
+        switch (genderRaw.toLowerCase()) {
+          case "male":
+            genderIcon = "assets/icons/gender-male.png";
+            break;
+          case "female":
+            genderIcon = "assets/icons/gender-female.png";
+            break;
+          case "non-binary":
+          case "nonbinary":
+            genderIcon = "assets/icons/gender-nonbinary.png";
+            break;
+          default:
+            genderIcon = "assets/icons/gender-unspecified.png";
+        }
+        modalMeta.innerHTML = `
+  <div><strong>Age:</strong> ${card.dataset.age || "—"}</div>
+
+  <div class="staff-gender-row">
+    <strong>Gender:</strong>
+    <span class="gender-value">
+      <img src="${genderIcon}" alt="">
+      ${genderRaw || "—"}
+    </span>
+  </div>
+
+  <div><strong>Timezone:</strong> ${card.dataset.timezone || "—"}</div>
+  <div><strong>Birthday:</strong> ${card.dataset.birthday || "—"}</div>
+`;
+        modalIntro.innerHTML =
+          (card.dataset.intro || "No introduction provided.")
+          .replace(/\n/g, "<br><br>");
+        modal.classList.add("active");
+        if (!skipHistory) {
+          history.pushState(null, "", `#staff/${card.dataset.id}`);
+        }
+      }
+      // Staff card click → open modal
+      document.querySelectorAll(".staff-card").forEach(card => {
+        card.addEventListener("click", () => {
+          openStaffModal(card);
+        });
+      });
+      /* ================= STAFF PREVIEW AUTO-GENERATION ================= */
+      document.querySelectorAll(".staff-card").forEach(card => {
+        const previewEl = card.querySelector(".staff-preview");
+        if (!previewEl) return;
+        const fullIntro = card.dataset.intro || "";
+        // Take first 180 characters cleanly
+        let previewText = fullIntro.trim().replace(/\n/g, " ");
+        previewText = previewText.substring(0, 180);
+        // Avoid cutting mid-word
+        previewText = previewText.substring(0, previewText.lastIndexOf(" "));
+        previewEl.textContent = previewText + "...";
+      });
+      // "Read more" click (mobile-safe)
+      document.querySelectorAll(".read-more").forEach(link => {
+        link.addEventListener("click", e => {
+          e.stopPropagation();
+          const card = link.closest(".staff-card");
+          openStaffModal(card);
+        });
+      });
+
+      function closeStaffModalToStaff() {
+        if (!modal.classList.contains("active")) return;
+        modal.classList.remove("active");
+        // Only change hash if we are in a staff modal URL
+        if (location.hash.startsWith("#staff/")) {
+          history.pushState(null, "", "#staff");
+        }
+      }
+
+      function handleStaffHash() {
+        const hash = location.hash;
+        // #staff/NAME_X → open modal
+        if (hash.startsWith("#staff/")) {
+          const id = hash.split("/")[1];
+          const card = document.querySelector(`.staff-card[data-id="${id}"]`);
+          if (card) {
+            activateTab("staff");
+            openStaffModal(card, true);
+          }
+          return;
+        }
+        // #staff → close modal but stay on staff tab
+        if (hash === "#staff") {
+          modal.classList.remove("active");
+          activateTab("staff");
+          return;
+        }
+        // anything else → close modal
+        modal.classList.remove("active");
+      }
+      window.addEventListener("load", handleStaffHash);
+      window.addEventListener("hashchange", handleStaffHash);
+      window.addEventListener("popstate", handleStaffHash);
+      modalClose.onclick = () => {
+        closeStaffModalToStaff();
+      };
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") {
+          closeStaffModalToStaff();
+        }
+      });
+      modal.addEventListener("click", e => {
+        // Only close when clicking the overlay, not the card
+        if (e.target === modal) {
+          closeStaffModalToStaff();
+        }
+      });
+      const toTop = document.getElementById("toTop");
+      window.addEventListener("scroll", () => {
+        toTop.classList.toggle("show", window.scrollY > 400);
+      });
+      toTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+      /* ================= MOBILE TAB SCROLL INDICATOR ================= */
+      const tabsViewport = document.querySelector(".tabs-viewport");
+
+      function updateTabFades() {
+        if (!tabsViewport) return;
+        const scrollLeft = tabsViewport.scrollLeft;
+        const maxScroll =
+          tabsViewport.scrollWidth - tabsViewport.clientWidth;
+        tabsViewport.classList.toggle("fade-left", scrollLeft > 4);
+        tabsViewport.classList.toggle(
+          "fade-right",
+          scrollLeft < maxScroll - 4
+        );
+      }
+      // Initial check
+      updateTabFades();
+      // Update on scroll
+      tabsViewport.addEventListener("scroll", updateTabFades);
+      // Update on resize (orientation change etc.)
+      window.addEventListener("resize", updateTabFades);
+      /* ================= NEWS DATA (EMPTY BY DEFAULT) ================= */
+      const newsArticles = [];
+      // Staff will push real articles here later.
+      // If empty, nothing renders.
+      /* ================= RENDER NEWS ================= */
+      function renderNews() {
+        const featured = document.getElementById("featuredNews");
+        const grid = document.getElementById("newsGrid");
+        featured.innerHTML = "";
+        grid.innerHTML = "";
+        if (!newsArticles.length) {
+          return; // nothing renders if no articles
+        }
+        const first = newsArticles[0];
+        // Featured (wide)
+        featured.innerHTML = `
+    <div class="news-card">
+      <img src="${first.image}" alt="">
+      <h3>${first.title}</h3>
+      <p>${first.description}</p>
+    </div>
+  `;
+        // Grid rest
+        newsArticles.slice(1).forEach(article => {
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.innerHTML = `
+      <img src="${article.image}" alt="">
+      <h3>${article.title}</h3>
+      <p>${article.description}</p>
+    `;
+          grid.appendChild(card);
+        });
+      }
+      renderNews();
+      const theoryArticles = []; // empty by default
+      function renderTheories() {
+        const grid = document.getElementById("theoryGrid");
+        grid.innerHTML = "";
+        if (!theoryArticles.length) return;
+        theoryArticles.forEach(article => {
+          const card = document.createElement("div");
+          card.className = "news-card";
+          card.innerHTML = `
+      <h3>${article.title}</h3>
+      <p>${article.preview}</p>
+    `;
+          card.onclick = () => openTheory(article);
+          grid.appendChild(card);
+        });
+      }
+
+      function openTheory(article) {
+        const modal = document.getElementById("theoryModal");
+        const card = document.getElementById("theoryModalCard");
+        card.innerHTML = `
+    <h2>${article.title}</h2>
+    <p>${article.content}</p>
+  `;
+        modal.classList.add("active");
+      }
+      document.getElementById("theoryModal")
+        .addEventListener("click", e => {
+          if (e.target.id === "theoryModal") {
+            e.currentTarget.classList.remove("active");
+          }
+        });
+      renderTheories();
+
+      function restoreFromSession() {
+        const saved = sessionStorage.getItem("discordUser");
+        if (!saved) return;
+        const user = JSON.parse(saved);
+        document.getElementById("displayName").value = user.display;
+        document.getElementById("username").value = user.username;
+        document.getElementById("userId").value = user.id;
+      }
+
+      function autoFillFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const username = params.get("username");
+        const display = params.get("display");
+        if (id && username && display) {
+          document.getElementById("displayName").value = display;
+          document.getElementById("username").value = username;
+          document.getElementById("userId").value = id;
+          sessionStorage.setItem(
+            "discordUser",
+            JSON.stringify({
+              id,
+              username,
+              display
+            })
+          );
+        }
+      }
+      autoFillFromURL();
+      restoreFromSession();
+
+      function requireLogin() {
+        const form = document.getElementById("theoryForm");
+        const loginArea = document.getElementById("loginArea");
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const saved = sessionStorage.getItem("discordUser");
+        if (!id && !saved) {
+          form.style.display = "none";
+          loginArea.style.display = "block";
+        } else {
+          form.style.display = "block";
+          loginArea.style.display = "none";
+        }
+      }
+    </script>
+
+  </body>
+
+</html>
