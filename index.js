@@ -81,7 +81,7 @@ app.get("/callback", async (req, res) => {
 
   } catch (error) {
     console.error(error.response?.data || error);
-    res.send("Authentication failed.");
+    res.send(error.response?.data || error.message);
   }
 });
 
