@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 
 // Serve frontend
-const frontendPath = path.resolve(__dirname, "../gokurakugai-main");
+const frontendPath = __dirname;
 app.use(express.static(frontendPath));
 
 app.get("/", (req, res) => {
