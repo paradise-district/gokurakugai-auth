@@ -1,92 +1,58 @@
 require("dotenv").config();
 const express = require("express");
-const axios = require("axios");
+const session = require("express-session");
+const passport = require("passport");
+const DiscordStrategy = require("passport-discord").Strategy;
 const cors = require("cors");
-const path = require("path");
 
 const app = express();
-app.use(cors());
 
-app.use(express.static(__dirname));
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+}));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}));
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.REDIRECT_URI;
-const GUILD_ID = process.env.GUILD_ID;
+app.use(passport.initialize());
+app.use(passport.session());
 
-/* ================= LOGIN ROUTE ================= */
-app.get("/login", (req, res) => {
-  const discordURL =
-    `https://discord.com/api/oauth2/authorize` +
-    `?client_id=${CLIENT_ID}` +
-    `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
-    `&response_type=code` +
-    `&scope=identify%20guilds`;
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((obj, done) => done(null, obj));
 
-  res.redirect(discordURL);
-});
+passport.use(new DiscordStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: process.env.REDIRECT_URI,
+  scope: ["identify", "guilds"]
+}, (accessToken, refreshToken, profile, done) => {
+  process.nextTick(() => done(null, profile));
+}));
 
-/* ================= CALLBACK ROUTE ================= */
-app.get("/callback", async (req, res) => {
-  const code = req.query.code;
-
-  try {
-    // Exchange code for token
-    const tokenResponse = await axios.post(
-      "https://discord.com/api/oauth2/token",
-      new URLSearchParams({
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: "authorization_code",
-        code,
-        redirect_uri: REDIRECT_URI
-      }),
-      {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" }
-      }
-    );
-
-    const accessToken = tokenResponse.data.access_token;
-
-    // Get user info
-    const userResponse = await axios.get(
-      "https://discord.com/api/users/@me",
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-
-    const guildsResponse = await axios.get(
-      "https://discord.com/api/users/@me/guilds",
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
-
-    const user = userResponse.data;
-    const guilds = guildsResponse.data;
-
-    const isInServer = guilds.some(g => g.id === GUILD_ID);
-
-    if (!isInServer) {
-      return res.send("You must join the Discord server first.");
-    }
-
-    // Return user data to frontend
-    console.log("Redirecting with:", user.id, user.username);
-
-    res.redirect(
-  `https://paradise-district.github.io/gokurakugai/?id=${user.id}&username=${user.username}&display=${encodeURIComponent(user.global_name || user.username)}#theories`
+app.get("/auth/discord",
+  passport.authenticate("discord")
 );
 
-  } catch (error) {
-    console.error(error.response?.data || error);
-    res.send(error.response?.data || error.message);
+app.get("/auth/discord/callback",
+  passport.authenticate("discord", { failureRedirect: "/" }),
+  (req, res) => {
+    res.redirect(process.env.FRONTEND_URL);
   }
+);
+
+app.get("/api/user", (req, res) => {
+  if (!req.user) return res.status(401).json({ error: "Not logged in" });
+  res.json(req.user);
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.get("/logout", (req, res) => {
+  req.logout(() => {
+    res.redirect(process.env.FRONTEND_URL);
+  });
 });
+
+app.listen(3000, () => console.log("Auth server running on port 3000"));
